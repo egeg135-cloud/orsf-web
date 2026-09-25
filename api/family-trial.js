@@ -26,10 +26,7 @@ module.exports = async(req,res)=>{
   const open = enabled && configured && Date.now() <= CLOSE_AT;
   if(req.method==='GET'){
     if(!open) return reply(200,{ok:true,open:false,reason:Date.now()>CLOSE_AT?'closed':'preparing'});
-    try {
-      const check=await fetch(`${SB_URL}/rest/v1/${TABLE}?select=id&limit=0`,{headers:{apikey:process.env.SUPABASE_SERVICE_ROLE_KEY,Authorization:`Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`},signal:AbortSignal.timeout(8000)});
-      return reply(200,{ok:true,open:check.ok,reason:check.ok?'open':'preparing',metaPixelId:/^\d{5,25}$/.test(process.env.META_PIXEL_ID||'')?process.env.META_PIXEL_ID:''});
-    } catch{return reply(200,{ok:true,open:false,reason:'preparing'});}
+    return reply(200,{ok:true,open:true,reason:'open',metaPixelId:/^\d{5,25}$/.test(process.env.META_PIXEL_ID||'')?process.env.META_PIXEL_ID:''});
   }
   if(!open) return reply(503,{ok:false,message:Date.now()>CLOSE_AT?'모집이 마감되었습니다.':'신청 접수 준비 중입니다. 잠시 후 다시 확인해 주세요.'});
   const body=parse(req.body);
