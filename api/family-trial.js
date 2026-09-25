@@ -2,20 +2,26 @@
 const SB_URL = 'https://cpfawfukpssesuoypzub.supabase.co';
 const TABLE = 'family_trial_202610';
 const CLOSE_AT = Date.parse('2026-10-03T23:59:59+09:00');
-const AGE = new Set(['4-6', '7-10']);
-const SOLUTIONS = new Set(['거품형 핸드워시','액상 핸드워시','고체 비누','젤리 비누','물만 사용','기타']);
-const ISSUES = new Set(['손 씻기 시작을 꺼려요','너무 빨리 끝내요','비누 사용을 꺼려요','씻은 뒤 정리가 어려워요','특별한 불편은 없어요','기타']);
+const SOLUTIONS = new Set(['거품형 핸드워시','액상 핸드워시','고체 비누','젤리 비누','물만 사용']);
+const ISSUES = new Set(['손 씻기 시작을 꺼려요','너무 빨리 끝내요','비누 사용을 꺼려요','씻은 뒤 정리가 어려워요','특별한 불편은 없어요']);
 const ATTR = {source:new Set(['meta','instagram','community','direct']),medium:new Set(['paid_social','organic','referral','none']),campaign:new Set(['orsf_trial_202610']),content:new Set(['tactile','family','profile','community'])};
 const str = (v,max) => typeof v === 'string' && v.length <= max ? v.trim() : '';
 function normalizeContact(v) { const raw = str(v,80); return raw.includes('@') ? raw.toLowerCase() : raw.replace(/[ -]/g,''); }
+function normalizeChoice(value,other,allowed,max) {
+  if(value==='기타') { const detail=str(other,max); return detail ? `기타: ${detail}` : ''; }
+  return allowed.has(value) ? value : '';
+}
 function parse(body) { if (typeof body === 'string') { try { return JSON.parse(body); } catch { return null; } } return body && typeof body === 'object' && !Array.isArray(body) ? body : null; }
 function validate(body) {
-  const guardian = str(body.guardianName,40), contact = normalizeContact(body.contact);
+  const guardian = str(body.guardianName,40), contact = normalizeContact(body.contact), childAge=Number(body.childAge);
   if(guardian.length<2 || !(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(contact)||/^01[016789]\d{7,8}$/.test(contact))) return null;
-  if(!AGE.has(body.childAgeGroup)||!SOLUTIONS.has(body.currentSolution)||!ISSUES.has(body.mainIssue)||body.participationAgreed!==true||body.privacyConsent!==true) return null;
+  if(!Number.isInteger(childAge)||childAge<4||childAge>10||body.participationAgreed!==true||body.privacyConsent!==true) return null;
+  const currentSolution=normalizeChoice(body.currentSolution,body.currentSolutionOther,SOLUTIONS,50);
+  const mainIssue=normalizeChoice(body.mainIssue,body.mainIssueOther,ISSUES,80);
+  if(!currentSolution||!mainIssue) return null;
   const a = body.attribution || {}, attr = {};
   for(const [key,set] of Object.entries(ATTR)) attr[key] = set.has(a[key]) ? a[key] : '';
-  return {guardian_name:guardian,contact,child_age_group:body.childAgeGroup,current_solution:body.currentSolution,main_issue:body.mainIssue,participation_agreed:true,privacy_consent:true,consent_version:'2026-09-24-v1',attribution:attr};
+  return {guardian_name:guardian,contact,child_age_group:childAge<=6?'4-6':'7-10',current_solution:currentSolution,main_issue:mainIssue,participation_agreed:true,privacy_consent:true,consent_version:'2026-09-25-v2',attribution:attr};
 }
 module.exports = async(req,res)=>{
   res.setHeader('Cache-Control','no-store');
@@ -33,7 +39,7 @@ module.exports = async(req,res)=>{
   if(!body||JSON.stringify(body).length>5000) return reply(400,{ok:false,message:'신청 내용을 확인해 주세요.'});
   if(body.website) return reply(400,{ok:false,message:'신청 내용을 확인해 주세요.'});
   const row=validate(body);
-  if(!row) return reply(400,{ok:false,message:'연락처, 연령 및 필수 응답·동의를 확인해 주세요.'});
+  if(!row) return reply(400,{ok:false,message:'입력 내용을 확인해 주세요.'});
   try{
     if(!serviceKey) return reply(503,{ok:false,message:'신청 저장 설정을 확인하고 있습니다. 잠시 후 다시 시도해 주세요.'});
     const result=await fetch(`${SB_URL}/rest/v1/${TABLE}`,{method:'POST',headers:{apikey:serviceKey,Authorization:`Bearer ${serviceKey}`,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(row),signal:AbortSignal.timeout(10000)});
