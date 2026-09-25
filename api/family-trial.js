@@ -21,9 +21,9 @@ module.exports = async(req,res)=>{
   res.setHeader('Cache-Control','no-store');
   const reply=(status,data)=>res.status(status).json(data);
   if(!['GET','POST'].includes(req.method)) {res.setHeader('Allow','GET, POST');return reply(405,{ok:false});}
-  const configured = Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || '';
   const enabled = process.env.TRIAL_RECRUITMENT_OPEN === 'true';
-  const open = enabled && configured && Date.now() <= CLOSE_AT;
+  const open = enabled && Date.now() <= CLOSE_AT;
   if(req.method==='GET'){
     if(!open) return reply(200,{ok:true,open:false,reason:Date.now()>CLOSE_AT?'closed':'preparing'});
     return reply(200,{ok:true,open:true,reason:'open',metaPixelId:/^\d{5,25}$/.test(process.env.META_PIXEL_ID||'')?process.env.META_PIXEL_ID:''});
@@ -35,7 +35,8 @@ module.exports = async(req,res)=>{
   const row=validate(body);
   if(!row) return reply(400,{ok:false,message:'연락처, 연령 및 필수 응답·동의를 확인해 주세요.'});
   try{
-    const result=await fetch(`${SB_URL}/rest/v1/${TABLE}`,{method:'POST',headers:{apikey:process.env.SUPABASE_SERVICE_ROLE_KEY,Authorization:`Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(row),signal:AbortSignal.timeout(10000)});
+    if(!serviceKey) return reply(503,{ok:false,message:'신청 저장 설정을 확인하고 있습니다. 잠시 후 다시 시도해 주세요.'});
+    const result=await fetch(`${SB_URL}/rest/v1/${TABLE}`,{method:'POST',headers:{apikey:serviceKey,Authorization:`Bearer ${serviceKey}`,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(row),signal:AbortSignal.timeout(10000)});
     if(result.status===409) return reply(200,{ok:true,duplicate:true});
     if(!result.ok) {console.error('family_trial_insert_failed',result.status);return reply(503,{ok:false,message:'신청이 저장되지 않았습니다. 잠시 후 다시 시도해 주세요.'});}
     return reply(201,{ok:true,created:true});
