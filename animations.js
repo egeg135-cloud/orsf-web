@@ -269,6 +269,42 @@
     });
   }
 
+  // Smart Scroll-Triggered Video Playback & Viewport Control
+  // (스크롤 시 해당 영상 영역에서만 재생되고, 벗어나면 자동 일시정지)
+  const allVideos = document.querySelectorAll('video');
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const vid = entry.target;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+          // Reached the video section: play
+          if (vid.ended) {
+            vid.currentTime = 0;
+          }
+          const playPromise = vid.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {});
+          }
+        } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
+          // Scrolled away to other parts: pause immediately
+          if (!vid.paused) {
+            vid.pause();
+          }
+        }
+      });
+    }, {
+      threshold: [0, 0.2, 0.5]
+    });
+
+    allVideos.forEach((vid) => {
+      // Remove loop from brandSpaceVideo so it does not loop endlessly
+      if (vid.id === 'brandSpaceVideo') {
+        vid.removeAttribute('loop');
+      }
+      videoObserver.observe(vid);
+    });
+  }
+
   // Smooth scroll for in-page anchors
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function(e) {
