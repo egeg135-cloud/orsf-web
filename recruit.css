@@ -16,11 +16,11 @@
   font-display: swap;
 }
 
-/* 본문: 제주명조체 (JejuMyeongjoOTF) */
+/* 본문: 조선굴림체 (ChosunGu) */
 @font-face {
-  font-family: 'JejuMyeongjo';
-  src: url('assets/fonts/JejuMyeongjoOTF.woff') format('woff'),
-       url('assets/fonts/JejuMyeongjoOTF.otf') format('opentype');
+  font-family: 'ChosunGu';
+  src: url('assets/fonts/ChosunGu.woff') format('woff'),
+       url('assets/fonts/ChosunGu.ttf') format('truetype');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -60,7 +60,7 @@ body {
   margin: 0;
   background: #f8f7f1;
   color: #22372b;
-  font-family: 'JejuMyeongjo', 'Griun_Fromsol', serif;
+  font-family: 'ChosunGu', 'Griun_Fromsol', sans-serif;
   font-size: 20px;
   line-height: 1.8;
   text-rendering: optimizeLegibility;
@@ -751,7 +751,7 @@ fieldset {
 
 label {
   display: block;
-  font-family: 'JejuMyeongjo', 'Griun_Fromsol', serif;
+  font-family: 'ChosunGu', 'Griun_Fromsol', sans-serif;
   font-size: 20px;
   margin-bottom: 24px;
   font-weight: 700;
@@ -766,7 +766,7 @@ input:not([type=checkbox]), select {
   border-radius: 4px;
   background: #fff;
   color: #253d31;
-  font-family: 'JejuMyeongjo', 'Griun_Fromsol', serif;
+  font-family: 'ChosunGu', 'Griun_Fromsol', sans-serif;
   font-size: 19px;
   min-height: 56px;
 }
