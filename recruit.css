@@ -16,6 +16,16 @@
   font-display: swap;
 }
 
+/* 본문: 제주명조체 (JejuMyeongjoOTF) */
+@font-face {
+  font-family: 'JejuMyeongjo';
+  src: url('assets/fonts/JejuMyeongjoOTF.woff') format('woff'),
+       url('assets/fonts/JejuMyeongjoOTF.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 영문, 문장부호, 특수문자 전용 귀여운 손글씨 */
 @font-face {
   font-family: 'cachildren-kkum';
@@ -50,10 +60,9 @@ body {
   margin: 0;
   background: #f8f7f1;
   color: #22372b;
-  font-family: 'cachildren-kkum', 'Griun_Fromsol', sans-serif;
+  font-family: 'JejuMyeongjo', 'Griun_Fromsol', serif;
   font-size: 20px;
   line-height: 1.8;
-  -webkit-text-stroke: 0.36px currentColor;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -143,7 +152,6 @@ h1 em {
   color: #435445;
   margin-bottom: 30px;
   line-height: 1.82;
-  -webkit-text-stroke: 0.4px currentColor;
 }
 
 .button {
@@ -193,7 +201,6 @@ h1 em {
 .small {
   font-size: 16px;
   color: #556658;
-  -webkit-text-stroke: 0.32px currentColor;
 }
 
 .hero-photo {
@@ -227,7 +234,6 @@ h1 em {
   padding: 10px 14px;
   font-size: 14px;
   border-radius: 3px;
-  -webkit-text-stroke: 0.3px currentColor;
   z-index: 2;
 }
 
@@ -330,7 +336,6 @@ h2 {
   margin-top: 0;
   font-size: 21px;
   line-height: 1.82;
-  -webkit-text-stroke: 0.38px currentColor;
 }
 
 .packaging-preview {
@@ -351,7 +356,6 @@ h2 {
   font-size: 14px;
   color: #687367;
   margin-top: 10px;
-  -webkit-text-stroke: 0.28px currentColor;
 }
 
 .product-spec {
@@ -375,7 +379,6 @@ h2 {
 .spec-value {
   font-size: 18px;
   color: #22372b;
-  -webkit-text-stroke: 0.35px currentColor;
 }
 
 /* 3열 실사 제품 피처 카드 */
@@ -443,7 +446,6 @@ h2 {
   font-size: 18px;
   color: #4a5c4d;
   line-height: 1.72;
-  -webkit-text-stroke: 0.35px currentColor;
 }
 
 /* 4. 브랜드 시네마 필름 */
@@ -473,7 +475,6 @@ h2 {
   max-width: 720px;
   margin: 0;
   line-height: 1.75;
-  -webkit-text-stroke: 0.3px currentColor;
 }
 
 .video-container {
@@ -531,7 +532,6 @@ h2 {
   text-align: right;
   font-size: 15px;
   color: #9cb09f;
-  -webkit-text-stroke: 0.28px currentColor;
 }
 
 /* 5. 아틀리에 스토리 갤러리 (세로 스크롤 연동 가로 스크롤) */
@@ -563,7 +563,6 @@ h2 {
   color: #556658;
   margin: 0;
   font-size: 21px;
-  -webkit-text-stroke: 0.32px currentColor;
 }
 
 .gallery-viewport {
@@ -639,7 +638,6 @@ h2 {
   font-size: 17px;
   color: #556658;
   line-height: 1.6;
-  -webkit-text-stroke: 0.32px currentColor;
 }
 
 /* 세로 스크롤 연동 커스텀 프로그레스 바 */
@@ -700,7 +698,6 @@ h2 {
   font-size: 18px;
   margin: 0;
   line-height: 1.72;
-  -webkit-text-stroke: 0.36px currentColor;
 }
 
 .application {
@@ -741,7 +738,6 @@ h2 {
 
 .offer p {
   font-size: 16px;
-  -webkit-text-stroke: 0.32px currentColor;
 }
 
 .notice {
@@ -763,11 +759,10 @@ fieldset {
 
 label {
   display: block;
-  font-family: 'cachildren-kkum', 'Griun_Fromsol', sans-serif;
+  font-family: 'JejuMyeongjo', 'Griun_Fromsol', serif;
   font-size: 20px;
   margin-bottom: 24px;
   font-weight: 700;
-  -webkit-text-stroke: 0.4px currentColor;
 }
 
 input:not([type=checkbox]), select {
@@ -779,10 +774,9 @@ input:not([type=checkbox]), select {
   border-radius: 4px;
   background: #fff;
   color: #253d31;
-  font-family: 'cachildren-kkum', 'Griun_Fromsol', sans-serif;
+  font-family: 'JejuMyeongjo', 'Griun_Fromsol', serif;
   font-size: 19px;
   min-height: 56px;
-  -webkit-text-stroke: 0.35px currentColor;
 }
 
 input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-visible {
@@ -796,7 +790,6 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   font-weight: 400;
   margin-top: 8px;
   color: #586455;
-  -webkit-text-stroke: 0.3px currentColor;
 }
 
 .check {
@@ -805,7 +798,6 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   font-weight: 400;
   align-items: flex-start;
   font-size: 18px;
-  -webkit-text-stroke: 0.35px currentColor;
 }
 
 .check input {
@@ -819,7 +811,6 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   font-size: 16px;
   margin: 20px 0;
   line-height: 1.7;
-  -webkit-text-stroke: 0.3px currentColor;
 }
 
 .application form .button {
@@ -862,7 +853,6 @@ details p {
   color: #405042;
   margin-top: 12px;
   line-height: 1.8;
-  -webkit-text-stroke: 0.36px currentColor;
 }
 
 footer {
@@ -878,12 +868,10 @@ footer {
 
 footer p, footer a:not(.logo) {
   font-size: 16px;
-  -webkit-text-stroke: 0.3px currentColor;
 }
 
 footer small {
   font-size: 15px;
-  -webkit-text-stroke: 0.3px currentColor;
 }
 
 .footer-links {
