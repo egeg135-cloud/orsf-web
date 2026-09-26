@@ -152,58 +152,68 @@
     </section>
 
     <!-- 5. 아틀리에 스토리 갤러리 섹션 -->
-    <section class="section gallery" aria-label="orsf 관찰 기록 갤러리">
-      <div class="gallery-header">
-        <span class="section-badge">관찰과 기록의 순간들</span>
-        <h2>비누가 머무는 자리와 아이의 시간</h2>
-        <p>세면대 위에서 피어나는 작은 변화의 순간들을 차분히 담아냅니다.</p>
-      </div>
-      <div class="gallery-scroll">
-        <figure class="gallery-item">
-          <div class="gallery-img-box">
-            <img src="assets/images/story-01-exterior.webp" alt="제주 아틀리에 외벽 현판" loading="lazy">
+    <section class="section gallery" id="gallerySection" aria-label="orsf 관찰 기록 갤러리">
+      <div class="gallery-inner">
+        <div class="gallery-header">
+          <span class="section-badge">관찰과 기록의 순간들</span>
+          <h2>비누가 머무는 자리와 아이의 시간</h2>
+          <p>세면대 위에서 피어나는 작은 변화의 순간들을 차분히 담아냅니다.</p>
+        </div>
+        <div class="gallery-viewport" id="galleryViewport">
+          <div class="gallery-scroll" id="galleryTrack">
+            <figure class="gallery-item">
+              <div class="gallery-img-box">
+                <img src="assets/images/story-01-exterior.webp" alt="제주 아틀리에 외벽 현판" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>01. 제주 아틀리에</strong>
+                <p>현무암 숲속에서 제주의 자연과 촉감을 연구하는 공간</p>
+              </figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="gallery-img-box">
+                <img src="assets/images/story-02-interior.webp" alt="미니멀 세면 공간" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>02. 빛과 세면대</strong>
+                <p>아이가 스스로 다가서고 싶어지는 맑고 정갈한 공간</p>
+              </figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="gallery-img-box">
+                <img src="assets/images/story-03-package.webp" alt="딥그린 단상자와 비누" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>03. 정갈한 패키지</strong>
+                <p>지구를 생각한 친환경 단상자와 싱그러운 에메랄드 비누</p>
+              </figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="gallery-img-box">
+                <img src="assets/images/story-04-family.webp" alt="부모와 아이의 손씻기" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>04. 함께하는 손씻기</strong>
+                <p>‘손 씻어!’ 실랑이 대신 아이와 마주 보고 웃는 30초</p>
+              </figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="gallery-img-box">
+                <img src="assets/images/story-05-macro.webp" alt="비누 매크로 이슬 물방울" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>05. 이슬의 감촉</strong>
+                <p>제주 사계절 식물 유래 원료를 정성껏 담은 보드라운 텍스처</p>
+              </figcaption>
+            </figure>
           </div>
-          <figcaption>
-            <strong>01. 제주 아틀리에</strong>
-            <p>현무암 숲속에서 제주의 자연과 촉감을 연구하는 공간</p>
-          </figcaption>
-        </figure>
-        <figure class="gallery-item">
-          <div class="gallery-img-box">
-            <img src="assets/images/story-02-interior.webp" alt="미니멀 세면 공간" loading="lazy">
+        </div>
+        <!-- 세로 스크롤 연동 커스텀 프로그레스 바 -->
+        <div class="gallery-progress-wrap" aria-hidden="true">
+          <div class="gallery-progress-track" id="galleryProgressTrack">
+            <div class="gallery-progress-thumb" id="galleryProgressThumb"></div>
           </div>
-          <figcaption>
-            <strong>02. 빛과 세면대</strong>
-            <p>아이가 스스로 다가서고 싶어지는 맑고 정갈한 공간</p>
-          </figcaption>
-        </figure>
-        <figure class="gallery-item">
-          <div class="gallery-img-box">
-            <img src="assets/images/story-03-package.webp" alt="딥그린 단상자와 비누" loading="lazy">
-          </div>
-          <figcaption>
-            <strong>03. 정갈한 패키지</strong>
-            <p>지구를 생각한 친환경 단상자와 싱그러운 에메랄드 비누</p>
-          </figcaption>
-        </figure>
-        <figure class="gallery-item">
-          <div class="gallery-img-box">
-            <img src="assets/images/story-04-family.webp" alt="부모와 아이의 손씻기" loading="lazy">
-          </div>
-          <figcaption>
-            <strong>04. 함께하는 손씻기</strong>
-            <p>‘손 씻어!’ 실랑이 대신 아이와 마주 보고 웃는 30초</p>
-          </figcaption>
-        </figure>
-        <figure class="gallery-item">
-          <div class="gallery-img-box">
-            <img src="assets/images/story-05-macro.webp" alt="비누 매크로 이슬 물방울" loading="lazy">
-          </div>
-          <figcaption>
-            <strong>05. 이슬의 감촉</strong>
-            <p>제주 사계절 식물 유래 원료를 정성껏 담은 보드라운 텍스처</p>
-          </figcaption>
-        </figure>
+        </div>
       </div>
     </section>
 

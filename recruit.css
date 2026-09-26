@@ -43,7 +43,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 90px;
 }
 
@@ -535,13 +534,29 @@ h2 {
   -webkit-text-stroke: 0.28px currentColor;
 }
 
-/* 5. 아틀리에 스토리 갤러리 */
+/* 5. 아틀리에 스토리 갤러리 (세로 스크롤 연동 가로 스크롤) */
 .gallery {
-  padding-bottom: 90px;
+  padding: 80px 0;
+  border-bottom: 1px solid #d9dfd4;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.gallery-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .gallery-header {
-  margin-bottom: 36px;
+  padding: 0 6vw;
+  margin-bottom: 32px;
 }
 
 .gallery-header p {
@@ -551,39 +566,44 @@ h2 {
   -webkit-text-stroke: 0.32px currentColor;
 }
 
+.gallery-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gallery-viewport:active {
+  cursor: grabbing;
+}
+
 .gallery-scroll {
   display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 16px;
-  scrollbar-width: thin;
-  scrollbar-color: #809758 #e9eddf;
-}
-
-.gallery-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.gallery-scroll::-webkit-scrollbar-track {
-  background: #e9eddf;
-  border-radius: 3px;
-}
-
-.gallery-scroll::-webkit-scrollbar-thumb {
-  background: #809758;
-  border-radius: 3px;
+  gap: 28px;
+  width: max-content;
+  padding: 10px 6vw 24px 6vw;
+  will-change: transform;
+  margin: 0;
 }
 
 .gallery-item {
-  flex: 0 0 360px;
+  flex: 0 0 clamp(330px, 28vw, 420px);
+  width: clamp(330px, 28vw, 420px);
   margin: 0;
-  scroll-snap-align: start;
   background: #ffffff;
   border: 1px solid #d9dfd4;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(37, 61, 49, 0.04);
+  box-shadow: 0 4px 14px rgba(37, 61, 49, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(37, 61, 49, 0.09);
 }
 
 .gallery-img-box {
@@ -598,16 +618,17 @@ h2 {
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;
 }
 
 .gallery-item figcaption {
-  padding: 20px 22px;
+  padding: 22px 24px;
 }
 
 .gallery-item strong {
   display: block;
   font-family: 'Griun_Fromsol', sans-serif;
-  font-size: 19px;
+  font-size: 20px;
   color: #253d31;
   margin-bottom: 8px;
   -webkit-text-stroke: 0;
@@ -619,6 +640,33 @@ h2 {
   color: #556658;
   line-height: 1.6;
   -webkit-text-stroke: 0.32px currentColor;
+}
+
+/* 세로 스크롤 연동 커스텀 프로그레스 바 */
+.gallery-progress-wrap {
+  padding: 18px 6vw 0;
+  width: 100%;
+}
+
+.gallery-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e9eddf;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-progress-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 25%;
+  background: #7e9565;
+  border-radius: 4px;
+  will-change: transform;
 }
 
 .journey ol {

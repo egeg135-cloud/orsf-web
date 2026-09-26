@@ -83,29 +83,126 @@
       ease: 'power2.out'
     });
 
-    // 6. Gallery Items
-    gsap.from('.gallery-header', {
-      scrollTrigger: {
-        trigger: '.gallery',
-        start: 'top 82%'
-      },
-      y: 25,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    });
+    // 6. Gallery: Pinned Horizontal Scroll on Vertical Scroll
+    const gallerySection = document.getElementById('gallerySection');
+    const galleryTrack = document.getElementById('galleryTrack');
+    const galleryViewport = document.getElementById('galleryViewport');
+    const progressTrack = document.getElementById('galleryProgressTrack');
+    const progressThumb = document.getElementById('galleryProgressThumb');
 
-    gsap.from('.gallery-item', {
-      scrollTrigger: {
-        trigger: '.gallery-scroll',
-        start: 'top 85%'
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power3.out'
-    });
+    if (gallerySection && galleryTrack && galleryViewport) {
+      // Calculate exact overflow distance
+      const getMaxDistance = () => {
+        return Math.max(0, galleryTrack.scrollWidth - window.innerWidth);
+      };
+
+      // Header subtle reveal
+      gsap.from('.gallery-header', {
+        scrollTrigger: {
+          trigger: gallerySection,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+
+      // Horizontal Scroll Timeline driven by vertical page scroll
+      const horizontalTl = gsap.timeline();
+
+      // Scrub horizontal movement of the track
+      horizontalTl.to(galleryTrack, {
+        x: () => -getMaxDistance(),
+        ease: 'none'
+      }, 0);
+
+      // Scrub progress bar thumb across track
+      if (progressThumb && progressTrack) {
+        horizontalTl.to(progressThumb, {
+          x: () => {
+            const trackW = progressTrack.clientWidth;
+            const thumbW = progressThumb.clientWidth;
+            return Math.max(0, trackW - thumbW);
+          },
+          ease: 'none'
+        }, 0);
+      }
+
+      // Create ScrollTrigger pin
+      ScrollTrigger.create({
+        id: 'galleryPin',
+        trigger: gallerySection,
+        pin: true,
+        scrub: 1, // Smooth 1s catch-up for pleasant momentum
+        start: 'top top',
+        end: () => `+=${Math.max(window.innerHeight * 1.3, getMaxDistance() * 1.2)}`,
+        invalidateOnRefresh: true,
+        animation: horizontalTl
+      });
+
+      // Trackpad horizontal gesture: converts deltaX into vertical page scroll
+      gallerySection.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 6) {
+          window.scrollBy({ top: e.deltaX * 0.9 });
+        }
+      }, { passive: true });
+
+      // Click on progress track to jump/scroll to that location
+      if (progressTrack) {
+        progressTrack.addEventListener('click', (e) => {
+          const rect = progressTrack.getBoundingClientRect();
+          const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          const st = ScrollTrigger.getById('galleryPin');
+          if (st) {
+            const targetY = st.start + ratio * (st.end - st.start);
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Touch swipe support (left/right drag converts to vertical scroll to drive ScrollTrigger)
+      let touchStartX = 0;
+      let touchStartY = 0;
+      gallerySection.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      gallerySection.addEventListener('touchmove', (e) => {
+        if (!touchStartX || !touchStartY || e.touches.length !== 1) return;
+        const dx = touchStartX - e.touches[0].clientX;
+        const dy = touchStartY - e.touches[0].clientY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+          window.scrollBy({ top: dx * 1.2 });
+          touchStartX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      // Mouse drag-to-scroll support on desktop
+      let isDragging = false;
+      let dragStartX = 0;
+      galleryViewport.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        dragStartX = e.clientX;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = dragStartX - e.clientX;
+        if (Math.abs(dx) > 4) {
+          window.scrollBy({ top: dx * 1.3 });
+          dragStartX = e.clientX;
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    }
 
     // 7. Journey Steps (01~04)
     gsap.from('.journey h2', {
@@ -171,4 +268,25 @@
       }
     });
   }
+
+  // Smooth scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // Refresh ScrollTrigger calculations after everything loads
+  window.addEventListener('load', () => {
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
+  });
 })();
