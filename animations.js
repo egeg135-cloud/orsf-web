@@ -283,6 +283,55 @@
     });
   });
 
+  // Soap Bubble Burst Interaction on Click (클릭 시 비눗방울 퐁퐁 피어오르는 효과)
+  function spawnSoapBubbles(x, y) {
+    const bubbleCount = Math.floor(Math.random() * 3) + 6; // 6 ~ 8 bubbles
+    for (let i = 0; i < bubbleCount; i++) {
+      const bubble = document.createElement('div');
+      bubble.className = 'soap-bubble';
+      const size = Math.floor(Math.random() * 18) + 14; // 14px ~ 32px
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${x - size / 2}px`;
+      bubble.style.top = `${y - size / 2}px`;
+      document.body.appendChild(bubble);
+
+      // Trajectory: random angle with strong upward buoyancy
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 45 + 20;
+      const targetX = Math.cos(angle) * distance;
+      // Floats up by 50~100px
+      const targetY = Math.sin(angle) * distance - (Math.random() * 60 + 40);
+      const duration = Math.random() * 0.4 + 0.75; // 0.75s ~ 1.15s
+
+      if (typeof gsap !== 'undefined') {
+        gsap.fromTo(bubble,
+          { scale: 0.15, opacity: 0.95 },
+          {
+            x: targetX,
+            y: targetY,
+            scale: Math.random() * 0.4 + 0.9,
+            opacity: 0,
+            duration: duration,
+            ease: 'power1.out',
+            onComplete: () => {
+              bubble.remove();
+            }
+          }
+        );
+      } else {
+        setTimeout(() => bubble.remove(), 850);
+      }
+    }
+  }
+
+  // Pointerdown trigger for responsive immediate feedback on click
+  window.addEventListener('pointerdown', (e) => {
+    if (e.clientX >= 0 && e.clientY >= 0) {
+      spawnSoapBubbles(e.clientX, e.clientY);
+    }
+  }, { passive: true });
+
   // Refresh ScrollTrigger calculations after everything loads
   window.addEventListener('load', () => {
     if (typeof ScrollTrigger !== 'undefined') {

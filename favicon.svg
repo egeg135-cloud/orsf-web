@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="oreumGrad" x1="32" y1="10" x2="32" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#91be48"/>
+      <stop offset="50%" stop-color="#5a903c"/>
+      <stop offset="100%" stop-color="#2d5724"/>
+    </linearGradient>
+    <linearGradient id="capGrad" x1="32" y1="10" x2="32" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c1e87a"/>
+      <stop offset="100%" stop-color="#93c349"/>
+    </linearGradient>
+    <radialGradient id="shoulderGlow" cx="32" cy="18" r="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="baseShadow" x1="32" y1="46" x2="32" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#183313" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#13260f" stop-opacity="0.65"/>
+    </linearGradient>
+    <filter id="soapShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2" flood-color="#162912" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Soap Body -->
+  <path d="M 20 12 C 22 10.8 26 10 32 10 C 38 10 42 10.8 44 12 L 56 48 C 57 51 54 53 48 53.5 C 40 54 24 54 16 53.5 C 10 53 7 51 8 48 Z"
+        fill="url(#oreumGrad)" filter="url(#soapShadow)"/>
+
+  <!-- Base depth -->
+  <path d="M 8 48 C 16 52 48 52 56 48 C 55 51.5 52 53.5 48 53.5 C 40 54 24 54 16 53.5 C 12 53.5 9 51.5 8 48 Z"
+        fill="url(#baseShadow)"/>
+
+  <!-- Top Flat Cap -->
+  <ellipse cx="32" cy="12" rx="12" ry="3" fill="url(#capGrad)"/>
+  <ellipse cx="32" cy="11.5" rx="9" ry="2" fill="#d8f595" opacity="0.8"/>
+
+  <!-- Specular Glow -->
+  <ellipse cx="32" cy="18" rx="8" ry="4.5" fill="url(#shoulderGlow)"/>
+</svg>

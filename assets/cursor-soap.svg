@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <defs>
+    <linearGradient id="curSoapGrad" x1="16" y1="4" x2="16" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9bd04d"/>
+      <stop offset="50%" stop-color="#5fa03c"/>
+      <stop offset="100%" stop-color="#2d5e23"/>
+    </linearGradient>
+    <radialGradient id="curHighlight" cx="16" cy="9" r="6" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="curShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.2" flood-color="#142610" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  
+  <!-- Oreum Soap Body -->
+  <path d="M 11 6 C 12 5 14 4.5 16 4.5 C 18 4.5 20 5 21 6 L 27 24 C 27.8 26 26.2 27.5 23.5 27.8 C 19 28.2 13 28.2 8.5 27.8 C 5.8 27.5 4.2 26 5 24 Z"
+        fill="url(#curSoapGrad)" filter="url(#curShadow)"/>
+
+  <!-- Top Rim Cap -->
+  <ellipse cx="16" cy="6" rx="5.5" ry="1.6" fill="#b9e86c"/>
+  <ellipse cx="16" cy="5.8" rx="4" ry="1" fill="#e2ff9e" opacity="0.9"/>
+
+  <!-- Translucent Light Sheen -->
+  <ellipse cx="16" cy="9.5" rx="4" ry="2.2" fill="url(#curHighlight)"/>
+</svg>
