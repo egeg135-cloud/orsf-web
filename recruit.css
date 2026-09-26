@@ -8,9 +8,18 @@
 }
 
 @font-face {
-  font-family: 'Griun_Cocochoitoon';
-  src: url('assets/fonts/Griun_Cocochoitoon.woff') format('woff'),
-       url('assets/fonts/Griun_Cocochoitoon.ttf') format('truetype');
+  font-family: 'cachildren-kkum';
+  src: url('assets/fonts/cachildren-kkum.woff') format('woff'),
+       url('assets/fonts/cachildren-kkum.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'cachildren-modu';
+  src: url('assets/fonts/cachildren-modu.woff') format('woff'),
+       url('assets/fonts/cachildren-modu.otf') format('opentype');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -29,8 +38,9 @@ body {
   margin: 0;
   background: #f8f7f1;
   color: #253d31;
-  font-family: 'Griun_Cocochoitoon', 'EF_jejudoldam', sans-serif;
-  line-height: 1.7;
+  font-family: 'cachildren-kkum', 'cachildren-modu', 'EF_jejudoldam', sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
 }
 
 a {
@@ -109,9 +119,10 @@ h1 em {
 }
 
 .intro {
-  font-size: 17px;
+  font-size: 19px;
   color: #536452;
   margin-bottom: 28px;
+  line-height: 1.8;
 }
 
 .button {
@@ -140,7 +151,7 @@ h1 em {
 }
 
 .small {
-  font-size: 13px;
+  font-size: 14px;
   color: #5a675a;
 }
 
@@ -169,7 +180,7 @@ h1 em {
   background: #f8f7f1e8;
   color: #344436;
   padding: 8px 12px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .photo-label {
@@ -196,14 +207,14 @@ h1 em {
 
 .facts span {
   font-family: 'EF_jejudoldam', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 5px;
   color: #536452;
 }
 
 .facts strong {
   font-family: 'EF_jejudoldam', sans-serif;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .section {
@@ -228,6 +239,7 @@ h2 {
 
 .product p {
   margin-top: 0;
+  font-size: 17px;
 }
 
 .packaging-preview {
@@ -244,13 +256,13 @@ h2 {
 }
 
 .packaging-preview figcaption {
-  font-size: 12px;
+  font-size: 13px;
   color: #687367;
   margin-top: 8px;
 }
 
 .note {
-  font-size: 14px;
+  font-size: 15px;
   padding: 20px;
   background: #eceee5;
   border-left: 3px solid #809758;
@@ -282,7 +294,7 @@ h2 {
 }
 
 .journey li p {
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
 }
 
@@ -303,6 +315,7 @@ h2 {
 
 .offer b {
   font-family: 'EF_jejudoldam', sans-serif;
+  font-size: 16px;
 }
 
 .offer ul {
@@ -310,12 +323,12 @@ h2 {
 }
 
 .offer p {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .notice {
   font-family: 'EF_jejudoldam', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   padding: 12px 16px;
   background: #e2e8d7;
   margin-bottom: 20px;
@@ -331,8 +344,8 @@ fieldset {
 
 label {
   display: block;
-  font-family: 'Griun_Cocochoitoon', 'EF_jejudoldam', sans-serif;
-  font-size: 15px;
+  font-family: 'cachildren-kkum', 'cachildren-modu', 'EF_jejudoldam', sans-serif;
+  font-size: 16px;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -346,8 +359,8 @@ input:not([type=checkbox]), select {
   border-radius: 4px;
   background: #fff;
   color: #253d31;
-  font-family: 'Griun_Cocochoitoon', 'EF_jejudoldam', sans-serif;
-  font-size: 16px;
+  font-family: 'cachildren-kkum', 'cachildren-modu', 'EF_jejudoldam', sans-serif;
+  font-size: 17px;
   min-height: 50px;
 }
 
@@ -357,7 +370,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
 }
 
 .hint {
-  font-size: 13px;
+  font-size: 14px;
   display: block;
   font-weight: 400;
   margin-top: 8px;
@@ -369,7 +382,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   gap: 10px;
   font-weight: 400;
   align-items: flex-start;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .check input {
@@ -380,7 +393,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
 }
 
 .application details {
-  font-size: 13px;
+  font-size: 14px;
   margin: 20px 0;
 }
 
@@ -410,11 +423,11 @@ summary {
   cursor: pointer;
   font-family: 'EF_jejudoldam', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 details p {
-  font-size: 15px;
+  font-size: 16px;
   color: #4c5e4e;
   margin-top: 10px;
 }
@@ -431,7 +444,7 @@ footer {
 }
 
 footer p, footer a:not(.logo), footer small {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .footer-links {
@@ -484,7 +497,7 @@ footer p, footer a:not(.logo), footer small {
     letter-spacing: -1px;
   }
   .intro {
-    font-size: 16px;
+    font-size: 17px;
   }
   .hero-photo {
     height: 340px;
@@ -507,7 +520,7 @@ footer p, footer a:not(.logo), footer small {
     gap: 15px;
   }
   .facts strong {
-    font-size: 15px;
+    font-size: 16px;
   }
   .section {
     padding: 52px 24px;
@@ -521,10 +534,10 @@ footer p, footer a:not(.logo), footer small {
     gap: 20px;
   }
   .journey li p {
-    font-size: 13px;
+    font-size: 14px;
   }
   .journey h3 {
-    font-size: 17px;
+    font-size: 18px;
   }
   .offer {
     margin-top: 20px;
