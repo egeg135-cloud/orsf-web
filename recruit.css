@@ -526,14 +526,6 @@ h2 {
   transform: translateY(-2px);
 }
 
-.film-caption {
-  max-width: 1080px;
-  margin: 16px auto 0;
-  text-align: right;
-  font-size: 15px;
-  color: #9cb09f;
-}
-
 /* 5. 아틀리에 스토리 갤러리 (세로 스크롤 연동 가로 스크롤) */
 .gallery {
   padding: 80px 0;
