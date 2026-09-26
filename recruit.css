@@ -1,7 +1,16 @@
 @font-face {
+  font-family: 'Griun_Fromsol';
+  src: url('assets/fonts/Griun_Fromsol-Rg.woff') format('woff'),
+       url('assets/fonts/Griun_Fromsol-Rg.ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'EF_jejudoldam';
-  src: url('assets/fonts/EF_jejudoldam.woff') format('woff'),
-       url('assets/fonts/EF_jejudoldam.otf') format('opentype');
+  src: url('assets/fonts/Griun_Fromsol-Rg.woff') format('woff'),
+       url('assets/fonts/Griun_Fromsol-Rg.ttf') format('truetype');
   font-weight: 400 800;
   font-style: normal;
   font-display: swap;
@@ -42,7 +51,7 @@ body {
   margin: 0;
   background: #f8f7f1;
   color: #22372b;
-  font-family: 'cachildren-kkum', 'EF_jejudoldam', sans-serif;
+  font-family: 'cachildren-kkum', 'Griun_Fromsol', sans-serif;
   font-size: 20px;
   line-height: 1.8;
   -webkit-text-stroke: 0.36px currentColor;
@@ -72,7 +81,7 @@ header {
 }
 
 .logo span {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 13px;
   letter-spacing: 1px;
   margin-left: 14px;
@@ -86,7 +95,7 @@ header nav {
 }
 
 .nav-social, .nav-cta {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 16px;
   text-decoration: none;
   -webkit-text-stroke: 0;
@@ -107,7 +116,7 @@ header nav {
 }
 
 .eyebrow {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 13px;
   letter-spacing: 1.5px;
   font-weight: 700;
@@ -116,7 +125,7 @@ header nav {
 }
 
 h1 {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: clamp(38px, 4.4vw, 66px);
   line-height: 1.32;
   letter-spacing: -1px;
@@ -148,7 +157,7 @@ h1 em {
   color: #fff;
   border: 0;
   border-radius: 4px;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
@@ -231,7 +240,7 @@ h1 em {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #f8f7f1;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 14px;
   letter-spacing: 0.5px;
   padding: 7px 16px;
@@ -247,7 +256,7 @@ h1 em {
   left: 30px;
   font-size: 12px;
   letter-spacing: 2px;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   -webkit-text-stroke: 0;
 }
 
@@ -265,7 +274,7 @@ h1 em {
 }
 
 .facts span {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 16px;
   margin-bottom: 6px;
   color: #536452;
@@ -273,7 +282,7 @@ h1 em {
 }
 
 .facts strong {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 23px;
   line-height: 1.35;
   -webkit-text-stroke: 0;
@@ -286,7 +295,7 @@ h1 em {
 
 .section-badge {
   display: inline-block;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 15px;
   letter-spacing: 1px;
   color: #5a753e;
@@ -295,7 +304,7 @@ h1 em {
 }
 
 h2 {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.4;
   font-weight: 700;
@@ -357,7 +366,7 @@ h2 {
 }
 
 .spec-label {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 15px;
   color: #3b5a44;
   letter-spacing: 0.5px;
@@ -422,7 +431,7 @@ h2 {
 }
 
 .feature-card strong {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 22px;
   color: #253d31;
   margin-bottom: 12px;
@@ -505,7 +514,7 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
   padding: 11px 20px;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 15px;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
@@ -597,7 +606,7 @@ h2 {
 
 .gallery-item strong {
   display: block;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 19px;
   color: #253d31;
   margin-bottom: 8px;
@@ -626,14 +635,14 @@ h2 {
 }
 
 .journey li > span {
-  font-family: 'EF_jejudoldam', Georgia, serif;
+  font-family: 'Griun_Fromsol', Georgia, serif;
   font-size: 38px;
   color: #7e9565;
   -webkit-text-stroke: 0;
 }
 
 .journey h3 {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 23px;
   margin: 14px 0 10px;
   -webkit-text-stroke: 0;
@@ -671,7 +680,7 @@ h2 {
 }
 
 .offer b {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 20px;
   -webkit-text-stroke: 0;
 }
@@ -688,7 +697,7 @@ h2 {
 }
 
 .notice {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-size: 17px;
   padding: 14px 18px;
   background: #e2e8d7;
@@ -706,7 +715,7 @@ fieldset {
 
 label {
   display: block;
-  font-family: 'cachildren-kkum', 'EF_jejudoldam', sans-serif;
+  font-family: 'cachildren-kkum', 'Griun_Fromsol', sans-serif;
   font-size: 20px;
   margin-bottom: 24px;
   font-weight: 700;
@@ -722,7 +731,7 @@ input:not([type=checkbox]), select {
   border-radius: 4px;
   background: #fff;
   color: #253d31;
-  font-family: 'cachildren-kkum', 'EF_jejudoldam', sans-serif;
+  font-family: 'cachildren-kkum', 'Griun_Fromsol', sans-serif;
   font-size: 19px;
   min-height: 56px;
   -webkit-text-stroke: 0.35px currentColor;
@@ -773,7 +782,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
 }
 
 #formMsg {
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-weight: 700;
   font-size: 18px;
   padding: 10px 0;
@@ -793,7 +802,7 @@ details {
 
 summary {
   cursor: pointer;
-  font-family: 'EF_jejudoldam', sans-serif;
+  font-family: 'Griun_Fromsol', sans-serif;
   font-weight: 700;
   font-size: 21px;
   padding: 6px 0;
