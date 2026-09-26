@@ -7,22 +7,26 @@
   font-display: swap;
 }
 
+/* 영문, 문장부호, 특수문자 전용 귀여운 손글씨 */
+@font-face {
+  font-family: 'cachildren-kkum';
+  src: url('assets/fonts/cachildren-latin.woff') format('woff'),
+       url('assets/fonts/cachildren-latin.ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-002F, U+003A-007E, U+00A0-00FF, U+2000-206F, U+2100-214F, U+2190-21FF, U+2500-25FF;
+}
+
+/* 한글 및 숫자: 천안어린이꿈누리터 꿈체 */
 @font-face {
   font-family: 'cachildren-kkum';
   src: url('assets/fonts/cachildren-kkum.woff') format('woff'),
        url('assets/fonts/cachildren-kkum.otf') format('opentype');
-  font-weight: 400 700;
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
-}
-
-@font-face {
-  font-family: 'cachildren-modu';
-  src: url('assets/fonts/cachildren-modu.woff') format('woff'),
-       url('assets/fonts/cachildren-modu.otf') format('opentype');
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
+  unicode-range: U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+0030-0039;
 }
 
 * {
@@ -38,9 +42,12 @@ body {
   margin: 0;
   background: #f8f7f1;
   color: #253d31;
-  font-family: 'cachildren-kkum', 'cachildren-modu', 'EF_jejudoldam', sans-serif;
+  font-family: 'cachildren-kkum', 'EF_jejudoldam', sans-serif;
   font-size: 17px;
   line-height: 1.75;
+  -webkit-text-stroke: 0.32px currentColor;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -61,6 +68,7 @@ header {
   font-size: 42px;
   text-decoration: none;
   letter-spacing: -3px;
+  -webkit-text-stroke: 0;
 }
 
 .logo span {
@@ -68,6 +76,7 @@ header {
   font-size: 13px;
   letter-spacing: 1px;
   margin-left: 14px;
+  -webkit-text-stroke: 0;
 }
 
 header nav {
@@ -80,6 +89,7 @@ header nav {
   font-family: 'EF_jejudoldam', sans-serif;
   font-size: 14px;
   text-decoration: none;
+  -webkit-text-stroke: 0;
 }
 
 .nav-social {
@@ -102,6 +112,7 @@ header nav {
   letter-spacing: 1.5px;
   font-weight: 700;
   margin: 0 0 24px;
+  -webkit-text-stroke: 0;
 }
 
 h1 {
@@ -111,6 +122,7 @@ h1 {
   letter-spacing: -1px;
   font-weight: 700;
   margin: 0 0 28px;
+  -webkit-text-stroke: 0;
 }
 
 h1 em {
@@ -123,6 +135,7 @@ h1 em {
   color: #536452;
   margin-bottom: 28px;
   line-height: 1.8;
+  -webkit-text-stroke: 0.35px currentColor;
 }
 
 .button {
@@ -143,6 +156,7 @@ h1 em {
   width: fit-content;
   min-height: 54px;
   letter-spacing: 0.5px;
+  -webkit-text-stroke: 0;
 }
 
 .button:disabled {
@@ -153,6 +167,7 @@ h1 em {
 .small {
   font-size: 14px;
   color: #5a675a;
+  -webkit-text-stroke: 0.28px currentColor;
 }
 
 .hero-photo {
@@ -181,6 +196,7 @@ h1 em {
   color: #344436;
   padding: 8px 12px;
   font-size: 13px;
+  -webkit-text-stroke: 0.25px currentColor;
 }
 
 .photo-label {
@@ -190,6 +206,7 @@ h1 em {
   font-size: 11px;
   letter-spacing: 2px;
   font-family: 'EF_jejudoldam', sans-serif;
+  -webkit-text-stroke: 0;
 }
 
 .facts {
@@ -210,11 +227,13 @@ h1 em {
   font-size: 14px;
   margin-bottom: 5px;
   color: #536452;
+  -webkit-text-stroke: 0;
 }
 
 .facts strong {
   font-family: 'EF_jejudoldam', sans-serif;
   font-size: 19px;
+  -webkit-text-stroke: 0;
 }
 
 .section {
@@ -229,6 +248,7 @@ h2 {
   font-weight: 700;
   letter-spacing: -0.5px;
   margin: 0 0 24px;
+  -webkit-text-stroke: 0;
 }
 
 .product {
@@ -240,6 +260,7 @@ h2 {
 .product p {
   margin-top: 0;
   font-size: 17px;
+  -webkit-text-stroke: 0.32px currentColor;
 }
 
 .packaging-preview {
@@ -259,6 +280,7 @@ h2 {
   font-size: 13px;
   color: #687367;
   margin-top: 8px;
+  -webkit-text-stroke: 0.25px currentColor;
 }
 
 .note {
@@ -266,6 +288,7 @@ h2 {
   padding: 20px;
   background: #eceee5;
   border-left: 3px solid #809758;
+  -webkit-text-stroke: 0.32px currentColor;
 }
 
 .journey ol {
@@ -285,17 +308,20 @@ h2 {
   font-family: 'EF_jejudoldam', Georgia, serif;
   font-size: 32px;
   color: #7e9565;
+  -webkit-text-stroke: 0;
 }
 
 .journey h3 {
   font-family: 'EF_jejudoldam', sans-serif;
   font-size: 19px;
   margin: 12px 0 8px;
+  -webkit-text-stroke: 0;
 }
 
 .journey li p {
   font-size: 15px;
   margin: 0;
+  -webkit-text-stroke: 0.32px currentColor;
 }
 
 .application {
@@ -316,6 +342,7 @@ h2 {
 .offer b {
   font-family: 'EF_jejudoldam', sans-serif;
   font-size: 16px;
+  -webkit-text-stroke: 0;
 }
 
 .offer ul {
@@ -324,6 +351,7 @@ h2 {
 
 .offer p {
   font-size: 14px;
+  -webkit-text-stroke: 0.3px currentColor;
 }
 
 .notice {
@@ -333,6 +361,7 @@ h2 {
   background: #e2e8d7;
   margin-bottom: 20px;
   border-radius: 3px;
+  -webkit-text-stroke: 0;
 }
 
 fieldset {
@@ -344,10 +373,11 @@ fieldset {
 
 label {
   display: block;
-  font-family: 'cachildren-kkum', 'cachildren-modu', 'EF_jejudoldam', sans-serif;
+  font-family: 'cachildren-kkum', 'EF_jejudoldam', sans-serif;
   font-size: 16px;
   margin-bottom: 20px;
   font-weight: 700;
+  -webkit-text-stroke: 0.35px currentColor;
 }
 
 input:not([type=checkbox]), select {
@@ -359,9 +389,10 @@ input:not([type=checkbox]), select {
   border-radius: 4px;
   background: #fff;
   color: #253d31;
-  font-family: 'cachildren-kkum', 'cachildren-modu', 'EF_jejudoldam', sans-serif;
+  font-family: 'cachildren-kkum', 'EF_jejudoldam', sans-serif;
   font-size: 17px;
   min-height: 50px;
+  -webkit-text-stroke: 0.3px currentColor;
 }
 
 input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-visible {
@@ -375,6 +406,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   font-weight: 400;
   margin-top: 8px;
   color: #586455;
+  -webkit-text-stroke: 0.25px currentColor;
 }
 
 .check {
@@ -383,6 +415,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   font-weight: 400;
   align-items: flex-start;
   font-size: 15px;
+  -webkit-text-stroke: 0.3px currentColor;
 }
 
 .check input {
@@ -395,6 +428,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
 .application details {
   font-size: 14px;
   margin: 20px 0;
+  -webkit-text-stroke: 0.25px currentColor;
 }
 
 .application form .button {
@@ -406,6 +440,7 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-
   font-family: 'EF_jejudoldam', sans-serif;
   font-weight: 700;
   padding: 8px 0;
+  -webkit-text-stroke: 0;
 }
 
 .faq {
@@ -424,12 +459,14 @@ summary {
   font-family: 'EF_jejudoldam', sans-serif;
   font-weight: 700;
   font-size: 17px;
+  -webkit-text-stroke: 0;
 }
 
 details p {
   font-size: 16px;
   color: #4c5e4e;
   margin-top: 10px;
+  -webkit-text-stroke: 0.32px currentColor;
 }
 
 footer {
@@ -445,6 +482,7 @@ footer {
 
 footer p, footer a:not(.logo), footer small {
   font-size: 14px;
+  -webkit-text-stroke: 0.28px currentColor;
 }
 
 .footer-links {
