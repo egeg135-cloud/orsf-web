@@ -157,11 +157,29 @@ h1 em {
   min-height: 54px;
   letter-spacing: 0.5px;
   -webkit-text-stroke: 0;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.button:hover {
+  background: #1e3629;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 61, 49, 0.2);
+}
+
+.button span {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.button:hover span {
+  transform: translate(3px, -3px);
 }
 
 .button:disabled {
   opacity: .5;
   cursor: wait;
+  transform: none;
+  box-shadow: none;
 }
 
 .small {
@@ -174,17 +192,19 @@ h1 em {
   position: relative;
   margin: 0;
   min-width: 0;
-  background: #c6bfae;
+  background: #253d31;
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 
-.hero-photo img {
+.hero-photo img,
+.hero-photo video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
+  display: block;
 }
 
 .hero-photo figcaption {
@@ -192,11 +212,33 @@ h1 em {
   bottom: 14px;
   left: 16px;
   right: 16px;
-  background: #f8f7f1e8;
+  background: rgba(248, 247, 241, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: #344436;
   padding: 8px 12px;
   font-size: 13px;
+  border-radius: 3px;
   -webkit-text-stroke: 0.25px currentColor;
+  z-index: 2;
+}
+
+.media-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(37, 61, 49, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f8f7f1;
+  font-family: 'EF_jejudoldam', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  -webkit-text-stroke: 0;
+  z-index: 2;
 }
 
 .photo-label {
@@ -241,6 +283,16 @@ h1 em {
   border-bottom: 1px solid #d9dfd4;
 }
 
+.section-badge {
+  display: inline-block;
+  font-family: 'EF_jejudoldam', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #627e46;
+  margin-bottom: 14px;
+  -webkit-text-stroke: 0;
+}
+
 h2 {
   font-family: 'EF_jejudoldam', sans-serif;
   font-size: clamp(26px, 2.8vw, 38px);
@@ -251,29 +303,38 @@ h2 {
   -webkit-text-stroke: 0;
 }
 
+/* 3. 제품 섹션 */
 .product {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
-.product p {
+.product-lead {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.product-intro p {
   margin-top: 0;
   font-size: 17px;
   -webkit-text-stroke: 0.32px currentColor;
 }
 
 .packaging-preview {
-  margin: 28px 0 0;
+  margin: 0;
 }
 
 .packaging-preview img {
   display: block;
   width: 100%;
-  max-width: 420px;
-  aspect-ratio: 1088/954;
+  max-width: 440px;
+  aspect-ratio: 16/9;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(37, 61, 49, 0.08);
 }
 
 .packaging-preview figcaption {
@@ -289,6 +350,246 @@ h2 {
   background: #eceee5;
   border-left: 3px solid #809758;
   -webkit-text-stroke: 0.32px currentColor;
+  margin-top: 24px;
+}
+
+/* 3열 실사 제품 피처 카드 */
+.product-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 8px;
+}
+
+.feature-card {
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid #d9dfd4;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px rgba(37, 61, 49, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(37, 61, 49, 0.08);
+}
+
+.feature-img-box {
+  width: 100%;
+  aspect-ratio: 16/11;
+  overflow: hidden;
+  background: #e2e5dc;
+}
+
+.feature-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.feature-card:hover .feature-img-box img {
+  transform: scale(1.04);
+}
+
+.feature-card figcaption {
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.feature-card strong {
+  font-family: 'EF_jejudoldam', sans-serif;
+  font-size: 18px;
+  color: #253d31;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  -webkit-text-stroke: 0;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 15px;
+  color: #556658;
+  line-height: 1.65;
+  -webkit-text-stroke: 0.28px currentColor;
+}
+
+/* 4. 브랜드 시네마 필름 */
+.brand-film {
+  background: #1b2f24;
+  color: #f8f7f1;
+  border-bottom: 1px solid #14231b;
+}
+
+.brand-film .section-badge {
+  color: #a3c285;
+}
+
+.brand-film-header {
+  margin-bottom: 32px;
+}
+
+.brand-film-header h2 {
+  color: #f8f7f1;
+  margin-bottom: 14px;
+}
+
+.brand-film-header p {
+  color: #b5c4b8;
+  font-size: 17px;
+  max-width: 680px;
+  margin: 0;
+  -webkit-text-stroke: 0.25px currentColor;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+}
+
+.sound-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(27, 47, 36, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f8f7f1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 10px 18px;
+  font-family: 'EF_jejudoldam', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  -webkit-text-stroke: 0;
+}
+
+.sound-toggle-btn:hover {
+  background: rgba(41, 72, 55, 0.95);
+  transform: translateY(-2px);
+}
+
+.film-caption {
+  max-width: 1080px;
+  margin: 16px auto 0;
+  text-align: right;
+  font-size: 13px;
+  color: #8c9e8f;
+  -webkit-text-stroke: 0.25px currentColor;
+}
+
+/* 5. 아틀리에 스토리 갤러리 */
+.gallery {
+  padding-bottom: 90px;
+}
+
+.gallery-header {
+  margin-bottom: 36px;
+}
+
+.gallery-header p {
+  color: #556658;
+  margin: 0;
+  -webkit-text-stroke: 0.28px currentColor;
+}
+
+.gallery-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #809758 #e9eddf;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+  background: #e9eddf;
+  border-radius: 3px;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: #809758;
+  border-radius: 3px;
+}
+
+.gallery-item {
+  flex: 0 0 340px;
+  margin: 0;
+  scroll-snap-align: start;
+  background: #ffffff;
+  border: 1px solid #d9dfd4;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(37, 61, 49, 0.04);
+}
+
+.gallery-img-box {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #e2e5dc;
+}
+
+.gallery-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item figcaption {
+  padding: 18px 20px;
+}
+
+.gallery-item strong {
+  display: block;
+  font-family: 'EF_jejudoldam', sans-serif;
+  font-size: 16px;
+  color: #253d31;
+  margin-bottom: 6px;
+  -webkit-text-stroke: 0;
+}
+
+.gallery-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #687367;
+  line-height: 1.5;
+  -webkit-text-stroke: 0.25px currentColor;
 }
 
 .journey ol {
@@ -538,10 +839,17 @@ footer p, footer a:not(.logo), footer small {
     font-size: 17px;
   }
   .hero-photo {
-    height: 340px;
+    height: 420px;
   }
-  .hero-photo img {
+  .hero-photo img,
+  .hero-photo video {
     object-fit: cover;
+  }
+  .media-badge {
+    top: 16px;
+    left: 16px;
+    font-size: 11px;
+    padding: 4px 10px;
   }
   .photo-label {
     top: 20px;
@@ -563,7 +871,26 @@ footer p, footer a:not(.logo), footer small {
   .section {
     padding: 52px 24px;
   }
-  .product, .application {
+  .product-lead {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .product-features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .video-container {
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+  }
+  .sound-toggle-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .gallery-item {
+    flex: 0 0 82vw;
+  }
+  .application {
     grid-template-columns: 1fr;
     gap: 20px;
   }
