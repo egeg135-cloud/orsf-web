@@ -26,28 +26,6 @@
   font-display: swap;
 }
 
-/* 영문, 문장부호, 특수문자 전용 귀여운 손글씨 */
-@font-face {
-  font-family: 'cachildren-kkum';
-  src: url('assets/fonts/cachildren-latin.woff') format('woff'),
-       url('assets/fonts/cachildren-latin.ttf') format('truetype');
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0020-002F, U+003A-007E, U+00A0-00FF, U+2000-206F, U+2100-214F, U+2190-21FF, U+2500-25FF;
-}
-
-/* 한글 및 숫자: 천안어린이꿈누리터 꿈체 */
-@font-face {
-  font-family: 'cachildren-kkum';
-  src: url('assets/fonts/cachildren-kkum.woff') format('woff'),
-       url('assets/fonts/cachildren-kkum.otf') format('opentype');
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+0030-0039;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -61,8 +39,8 @@ body {
   background: #f8f7f1;
   color: #22372b;
   font-family: 'ChosunGu', 'Griun_Fromsol', sans-serif;
-  font-size: 20px;
-  line-height: 1.58;
+  font-size: 16.5px;
+  line-height: 1.56;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -491,7 +469,7 @@ h2 {
 
 .brand-film-header p {
   color: #c0cfc3;
-  font-size: 21px;
+  font-size: 17px;
   max-width: 720px;
   margin: 0;
   line-height: 1.58;
@@ -574,7 +552,7 @@ h2 {
 .gallery-header p {
   color: #556658;
   margin: 0;
-  font-size: 21px;
+  font-size: 17px;
 }
 
 .gallery-viewport {
@@ -724,40 +702,40 @@ h2 {
 }
 
 .apply-intro p {
-  font-size: 21px;
-  line-height: 1.58;
+  font-size: 17px;
+  line-height: 1.56;
 }
 
 .offer {
-  padding: 26px;
+  padding: 24px;
   border: 1px solid #c6d0bc;
-  margin-top: 35px;
+  margin-top: 30px;
   background: #f8f9f5;
   border-radius: 4px;
 }
 
 .offer b {
   font-family: 'Griun_Fromsol', sans-serif;
-  font-size: 20px;
+  font-size: 17.5px;
   -webkit-text-stroke: 0;
 }
 
 .offer ul {
   padding-left: 20px;
-  font-size: 18px;
-  line-height: 1.52;
+  font-size: 15.5px;
+  line-height: 1.55;
 }
 
 .offer p {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .notice {
   font-family: 'Griun_Fromsol', sans-serif;
-  font-size: 17px;
-  padding: 14px 18px;
+  font-size: 16.5px;
+  padding: 13px 18px;
   background: #e2e8d7;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   border-radius: 4px;
   -webkit-text-stroke: 0;
 }
@@ -772,23 +750,23 @@ fieldset {
 label {
   display: block;
   font-family: 'ChosunGu', 'Griun_Fromsol', sans-serif;
-  font-size: 20px;
-  margin-bottom: 24px;
+  font-size: 17px;
+  margin-bottom: 22px;
   font-weight: 700;
 }
 
 input:not([type=checkbox]), select {
   display: block;
   width: 100%;
-  padding: 16px 18px;
-  margin-top: 10px;
+  padding: 14px 16px;
+  margin-top: 8px;
   border: 1px solid #b9c4b1;
   border-radius: 4px;
   background: #fff;
   color: #253d31;
   font-family: 'ChosunGu', 'Griun_Fromsol', sans-serif;
-  font-size: 19px;
-  min-height: 56px;
+  font-size: 16.5px;
+  min-height: 52px;
 }
 
 input:focus, select:focus, button:focus-visible, a:focus-visible, summary:focus-visible {
@@ -855,16 +833,16 @@ summary {
   cursor: pointer;
   font-family: 'Griun_Fromsol', sans-serif;
   font-weight: 700;
-  font-size: 21px;
+  font-size: 18.5px;
   padding: 6px 0;
   -webkit-text-stroke: 0;
 }
 
 details p {
-  font-size: 18px;
+  font-size: 15.5px;
   color: #405042;
   margin-top: 12px;
-  line-height: 1.58;
+  line-height: 1.56;
 }
 
 footer {
