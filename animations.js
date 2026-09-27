@@ -17,8 +17,7 @@
       .from('header', { y: -15, opacity: 0, duration: 0.7 })
       .from('.hero-copy h1', { y: 30, opacity: 0, duration: 0.9 }, '-=0.3')
       .from('.hero-copy .intro', { y: 20, opacity: 0, duration: 0.8 }, '-=0.6')
-      .from('.hero-copy .button', { y: 15, opacity: 0, scale: 0.97, duration: 0.7 }, '-=0.5')
-      .from('.hero-copy .small', { opacity: 0, duration: 0.6 }, '-=0.4')
+      .from('.hero-copy .hero-cta', { y: 15, opacity: 0, scale: 0.98, duration: 0.7 }, '-=0.5')
       .from('.hero-photo', { opacity: 0, scale: 0.98, duration: 1.1 }, '-=0.8');
 
     // 2. Facts Bar
