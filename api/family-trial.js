@@ -1,7 +1,7 @@
 // October 2026 cohort. New table keeps earlier trial records unchanged.
 const SB_URL = 'https://cpfawfukpssesuoypzub.supabase.co';
 const TABLE = 'family_trial_202610';
-const CLOSE_AT = Date.parse('2026-10-03T23:59:59+09:00');
+const CLOSE_AT = Date.parse('2026-10-04T23:59:59+09:00');
 const SOLUTIONS = new Set(['거품형 핸드워시','액상 핸드워시','고체 비누','젤리 비누','물로만 헹굼','물만 사용']);
 const ISSUES = new Set([
   '세면대로 가는 시작을 꺼려요','손 씻기 시작을 꺼려요',
