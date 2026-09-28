@@ -10,7 +10,12 @@ const ISSUES = new Set([
   '씻고 난 뒤 욕실 정리가 힘들어요','씻은 뒤 정리가 어려워요',
   '특별한 어려움은 없어요','특별한 불편은 없어요'
 ]);
-const ATTR = {source:new Set(['meta','instagram','community','direct']),medium:new Set(['paid_social','organic','referral','none']),campaign:new Set(['orsf_trial_202610']),content:new Set(['tactile','family','profile','community'])};
+const ATTR = {
+  source: new Set(['meta','instagram','community','direct','story','profile','ad']),
+  medium: new Set(['paid_social','social','organic','referral','none','cpc','bio']),
+  campaign: new Set(['orsf_trial_202610','trial_1st','trial_202610','orsf_trial']),
+  content: new Set(['tactile','family','profile','community','bio','feed','ad_tools'])
+};
 const str = (v,max) => typeof v === 'string' && v.length <= max ? v.trim() : '';
 function normalizeContact(v) { const raw = str(v,80); return raw.includes('@') ? raw.toLowerCase() : raw.replace(/[ -]/g,''); }
 function normalizeChoice(value,other,allowed,max) {

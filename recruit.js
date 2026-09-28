@@ -1,6 +1,6 @@
 (() => {
   const form=document.getElementById('trialForm'), fields=document.getElementById('fields'), btn=document.getElementById('submit'), msg=document.getElementById('formMsg'), availability=document.getElementById('availability');
-  const allowed={source:['meta','instagram','community','direct'],medium:['paid_social','organic','referral','none'],campaign:['orsf_trial_202610'],content:['tactile','family','profile','community']};
+  const allowed={source:['meta','instagram','community','direct','story','profile','ad'],medium:['paid_social','social','organic','referral','none','cpc','bio'],campaign:['orsf_trial_202610','trial_1st','trial_202610','orsf_trial'],content:['tactile','family','profile','community','bio','feed','ad_tools']};
   const query=new URLSearchParams(location.search), attribution={};
   let stored={};try{stored=JSON.parse(sessionStorage.getItem('orsf_trial_attribution')||'{}')||{};}catch{}
   const fresh=query.has('utm_source')||query.has('utm_campaign');
