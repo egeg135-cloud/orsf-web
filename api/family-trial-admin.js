@@ -15,6 +15,9 @@ module.exports=async(req,res)=>{
   if(b.action==='status'&&/^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(b.id||'')&&states.has(b.status)){
    const r=await fetch(ROOT+'?id=eq.'+b.id,{method:'PATCH',headers:{...headers,Prefer:'return=representation'},body:JSON.stringify({status:b.status,updated_at:new Date().toISOString()}),signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const rows=await r.json();if(rows.length!==1)return res.status(404).json({ok:false});return res.status(200).json({ok:true});
   }
+  if(b.action==='delete'&&/^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(b.id||'')){
+   const r=await fetch(ROOT+'?id=eq.'+b.id,{method:'DELETE',headers:{...headers,Prefer:'return=representation'},signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();return res.status(200).json({ok:true});
+  }
   return res.status(400).json({ok:false,message:'요청 내용을 확인해 주세요.'});
  }catch{return res.status(503).json({ok:false,message:'자료를 불러오거나 저장하지 못했습니다.'});}
 };

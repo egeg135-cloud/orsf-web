@@ -20,7 +20,7 @@
   }
   setupOther('currentSolution','currentSolutionOtherField','currentSolutionOther');
   setupOther('mainIssue','mainIssueOtherField','mainIssueOther');
-  fetch('/api/family-trial').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{if(data.open===true){fields.disabled=false;availability.textContent='20가구 모집 · 10월 3일 마감';setupPixel(data.metaPixelId);}else availability.textContent=data.reason==='closed'?'모집이 마감되었습니다.':'접수 준비 중 · 2025syso@gmail.com';}).catch(()=>{availability.textContent='접수 상태를 확인할 수 없습니다 · 2025syso@gmail.com';});
+  fetch('/api/family-trial').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{if(data.open===true){fields.disabled=false;availability.textContent='30가구 모집 · 10월 3일 마감';setupPixel(data.metaPixelId);}else availability.textContent=data.reason==='closed'?'모집이 마감되었습니다.':'접수 준비 중 · 2025syso@gmail.com';}).catch(()=>{availability.textContent='접수 상태를 확인할 수 없습니다 · 2025syso@gmail.com';});
   form.addEventListener('submit',async e=>{
     e.preventDefault();if(!form.reportValidity())return;
     const f=new FormData(form), contact=String(f.get('contact')||'').trim();
