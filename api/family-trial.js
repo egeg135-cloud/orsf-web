@@ -2,14 +2,23 @@
 const SB_URL = 'https://cpfawfukpssesuoypzub.supabase.co';
 const TABLE = 'family_trial_202610';
 const CLOSE_AT = Date.parse('2026-10-03T23:59:59+09:00');
-const SOLUTIONS = new Set(['거품형 핸드워시','액상 핸드워시','고체 비누','젤리 비누','물만 사용']);
-const ISSUES = new Set(['손 씻기 시작을 꺼려요','너무 빨리 끝내요','비누 사용을 꺼려요','씻은 뒤 정리가 어려워요','특별한 불편은 없어요']);
+const SOLUTIONS = new Set(['거품형 핸드워시','액상 핸드워시','고체 비누','젤리 비누','물로만 헹굼','물만 사용']);
+const ISSUES = new Set([
+  '세면대로 가는 시작을 꺼려요','손 씻기 시작을 꺼려요',
+  '물만 묻히고 너무 빨리 끝내요','너무 빨리 끝내요',
+  '비누나 핸드워시 쓰기를 싫어해요','비누 사용을 꺼려요',
+  '씻고 난 뒤 욕실 정리가 힘들어요','씻은 뒤 정리가 어려워요',
+  '특별한 어려움은 없어요','특별한 불편은 없어요'
+]);
 const ATTR = {source:new Set(['meta','instagram','community','direct']),medium:new Set(['paid_social','organic','referral','none']),campaign:new Set(['orsf_trial_202610']),content:new Set(['tactile','family','profile','community'])};
 const str = (v,max) => typeof v === 'string' && v.length <= max ? v.trim() : '';
 function normalizeContact(v) { const raw = str(v,80); return raw.includes('@') ? raw.toLowerCase() : raw.replace(/[ -]/g,''); }
 function normalizeChoice(value,other,allowed,max) {
-  if(value==='기타') { const detail=str(other,max); return detail ? `기타: ${detail}` : ''; }
-  return allowed.has(value) ? value : '';
+  const v = str(value,max);
+  if(!v) return '';
+  if(v==='기타') { const detail=str(other,max); return detail ? `기타: ${detail}` : '기타'; }
+  if(allowed.has(v)) return v;
+  return v;
 }
 function parse(body) { if (typeof body === 'string') { try { return JSON.parse(body); } catch { return null; } } return body && typeof body === 'object' && !Array.isArray(body) ? body : null; }
 function validate(body) {
