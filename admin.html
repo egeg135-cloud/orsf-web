@@ -846,8 +846,15 @@
           <div class="adm-actions-group">
             <select id="ageFilter" class="adm-btn-action">
               <option value="all">모든 연령</option>
-              <option value="4-6">만 4~6세</option>
-              <option value="7-10">만 7~10세</option>
+              <option value="4-6">만 4~6세 군</option>
+              <option value="7-10">만 7~10세 군</option>
+              <option value="4">만 4세</option>
+              <option value="5">만 5세</option>
+              <option value="6">만 6세</option>
+              <option value="7">만 7세</option>
+              <option value="8">만 8세</option>
+              <option value="9">만 9세</option>
+              <option value="10">만 10세</option>
             </select>
             <button class="adm-btn-action" id="btnToggleInsights">📊 설문 통계</button>
             <button class="adm-btn-action" id="btnReload">🔄 새로고침</button>
@@ -1061,19 +1068,29 @@
 
         // Age Filter
         if (currentFilterAge !== 'all') {
-          items = items.filter(i => i.child_age_group === currentFilterAge);
+          if (['4-6', '7-10'].includes(currentFilterAge)) {
+            items = items.filter(i => i.child_age_group === currentFilterAge);
+          } else {
+            const targetAge = Number(currentFilterAge);
+            items = items.filter(i => {
+              const actualAge = Number(i.actual_age || i.child_age || i.attribution?.actual_age || i.attribution?.child_age);
+              return actualAge === targetAge;
+            });
+          }
         }
 
         // Search Query
         if (currentSearchQuery) {
           const q = currentSearchQuery.toLowerCase().replace(/[^0-9a-zA-Z가-힣]/g, '');
           items = items.filter(i => {
+            const actualAge = i.actual_age || i.child_age || i.attribution?.actual_age || i.attribution?.child_age;
             const name = (i.guardian_name || '').toLowerCase();
             const rawContact = (i.contact || '').replace(/[^0-9a-zA-Z@._]/g, '').toLowerCase();
             const sol = (i.current_solution || '').toLowerCase();
             const iss = (i.main_issue || '').toLowerCase();
             const src = (i.attribution?.source || '').toLowerCase();
-            return name.includes(q) || rawContact.includes(q) || sol.includes(q) || iss.includes(q) || src.includes(q);
+            const ageStr = `${actualAge || ''}세 ${i.child_age_group || ''}`;
+            return name.includes(q) || rawContact.includes(q) || sol.includes(q) || iss.includes(q) || src.includes(q) || ageStr.includes(q);
           });
         }
 
@@ -1097,8 +1114,12 @@
           const contactFmt = formatContact(item.contact);
           const isPhone = !contactFmt.includes('@');
           const contactHref = isPhone ? `tel:${contactFmt}` : `mailto:${contactFmt}`;
+          const actualAge = item.actual_age || item.child_age || item.attribution?.actual_age || item.attribution?.child_age;
           const ageBadgeClass = item.child_age_group === '4-6' ? 'badge-age-46' : 'badge-age-710';
-          const ageText = item.child_age_group === '4-6' ? '만 4~6세' : '만 7~10세';
+          const ageGroupText = item.child_age_group === '4-6' ? '4~6세' : '7~10세';
+          const ageDisplayHtml = actualAge 
+            ? `<span class="badge-age ${ageBadgeClass}">만 ${actualAge}세</span><br><small style="color:var(--adm-text-muted);font-size:11px;">(${ageGroupText})</small>`
+            : `<span class="badge-age ${ageBadgeClass}">만 ${ageGroupText}</span>`;
           const rowClass = item.status === 'declined' ? 'declined-row' : '';
 
           const statusOptions = Object.entries(STATUS_CONFIG).map(([val, conf]) => 
@@ -1117,7 +1138,7 @@
                   <button class="btn-copy" data-copy="${esc(contactFmt)}" title="연락처 복사">📋</button>
                 </div>
               </td>
-              <td><span class="badge-age ${ageBadgeClass}">${ageText}</span></td>
+              <td>${ageDisplayHtml}</td>
               <td>
                 <div class="badge-product">${esc(item.current_solution)}</div>
                 <div class="issue-bubble">${esc(item.main_issue)}</div>
@@ -1272,24 +1293,28 @@
         }
 
         const headers = [
-          '신청ID', '신청시각', '보호자성함', '연락처', '아이연령군',
+          '신청ID', '신청시각', '보호자성함', '연락처', '아이실제나이', '아이연령군',
           '현재사용세정제', '가장힘든점', '진행상태', '유입경로', '광고소재', '캠페인', '동의버전'
         ];
 
-        const rows = rawItems.map(i => [
-          i.id,
-          i.created_at,
-          i.guardian_name,
-          formatContact(i.contact),
-          i.child_age_group === '4-6' ? '만 4~6세' : '만 7~10세',
-          i.current_solution || '',
-          i.main_issue || '',
-          STATUS_CONFIG[i.status]?.label || i.status,
-          i.attribution?.source || 'direct',
-          i.attribution?.content || '',
-          i.attribution?.campaign || '',
-          i.consent_version || ''
-        ]);
+        const rows = rawItems.map(i => {
+          const actualAge = i.actual_age || i.child_age || i.attribution?.actual_age || i.attribution?.child_age;
+          return [
+            i.id,
+            i.created_at,
+            i.guardian_name,
+            formatContact(i.contact),
+            actualAge ? `만 ${actualAge}세` : '미기록 (구간저장)',
+            i.child_age_group === '4-6' ? '만 4~6세' : '만 7~10세',
+            i.current_solution || '',
+            i.main_issue || '',
+            STATUS_CONFIG[i.status]?.label || i.status,
+            i.attribution?.source || 'direct',
+            i.attribution?.content || '',
+            i.attribution?.campaign || '',
+            i.consent_version || ''
+          ];
+        });
 
         const escCell = v => {
           let s = String(v ?? '');

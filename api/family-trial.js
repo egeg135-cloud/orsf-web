@@ -35,6 +35,8 @@ function validate(body) {
   if(!currentSolution||!mainIssue) return null;
   const a = body.attribution || {}, attr = {};
   for(const [key,set] of Object.entries(ATTR)) attr[key] = set.has(a[key]) ? a[key] : '';
+  attr.actual_age = childAge;
+  attr.child_age = childAge;
   return {guardian_name:guardian,contact,child_age_group:childAge<=6?'4-6':'7-10',current_solution:currentSolution,main_issue:mainIssue,participation_agreed:true,privacy_consent:true,consent_version:'2026-09-25-v2',attribution:attr};
 }
 module.exports = async(req,res)=>{
